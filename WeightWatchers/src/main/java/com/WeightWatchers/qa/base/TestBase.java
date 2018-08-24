@@ -5,10 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 public class TestBase {
@@ -35,8 +34,9 @@ public class TestBase {
 	{
 		//Get the browser details and initiate driver
 		String browserName = prop.getProperty("browser");
-		if(browserName.equals("firefox")){
-			driver = new FirefoxDriver(); 
+		if(browserName.equals("chrome")){
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\src\\drivers\\chromedriver.exe");
+			driver = new ChromeDriver(); 
 		}
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
